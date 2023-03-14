@@ -1,5 +1,11 @@
 <%- include('./partials/header.ejs')%>
+<%- include('./partials/navbar.ejs')%>
 
-    <h1>hello from registrations page</h1>
+    <h1>Register Here</h1>
+    <form action="/registration/" method="post">
+        <input type="text" name="" id="" placeholder="enter your name">
+        <input type="email" name="" id="" placeholder="enter your email">
+        <input type="password" name="" id="" placeholder="enter your password">
+        <input type="submit" value="Register">
 
     <%- include('./partials/footer.ejs')%>
