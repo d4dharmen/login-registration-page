@@ -6,7 +6,9 @@ router.get("/", LoginControllers.homepage);
 router.get("/registration", LoginControllers.registrationPage);
 router.post("/registration/", LoginControllers.registrationProcess);
 router.get("/login", LoginControllers.loginPage);
-router.post("/login/:id", LoginControllers.loggingIn);
-// router.get("/dashboard", LoginControllers.dashboard);
+router.post("/login", LoginControllers.loggingIn);
+// router.get("/login/logout", LoginControllers.logOut);
+
+
 
 export default router;

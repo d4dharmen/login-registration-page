@@ -25,3 +25,27 @@
     color: white;
     margin-top: 100px;
 }
+.flexBoxCentre{
+    margin: auto;
+    width: 60vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items:center;
+    background-color: goldenrod;
+    box-shadow: 2px 2px 2px;
+
+}
+form input{
+    width: 80%;
+    font-size: 20px;
+    margin: 10px 75px;
+    text-align: center;
+}
+.titleCentre{
+    text-align: center;
+    font-size: 6rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-shadow: 2px 2px 2px;
+}

@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 const logingSchema = mongoose.Schema({
 name: { type: String, required: true, unique: true, trim: true},
 email: { type: String, required: true, unique: true, trim: true}, 
-password:{ type: String, required: true, min: 4, trim:true}
+password:{ type: String, required: true,}
 })
 
 // creating model or collection

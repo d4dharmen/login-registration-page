@@ -1,4 +1,5 @@
 import loginCredential from "../dbs/loginSchemaNModel.js";
+import bcrypt from "bcrypt";
 
 class LoginControllers {
   static homepage = (req, res) => {
@@ -13,11 +14,14 @@ class LoginControllers {
   // actually registering users
   static registrationProcess = async (req, res) => {
     try {
+      var hashPwd = await bcrypt.hash(req.body.password, 8);
       const doc = new loginCredential({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: hashPwd,
       });
+      console.log(doc);
+
       // saving form fetched data
       const result = await doc.save();
       //redirection to login page
@@ -42,34 +46,30 @@ class LoginControllers {
       const uDbCredetial = await loginCredential.findOne({
         email: req.body.email,
       });
+      if (uDbCredetial != null) {
+        //veryfing user password with hash password in if condition
+        const isMatch = await bcrypt.compare(
+          uCredential.password,
+          uDbCredetial.password
+        );
 
-     if (uCredential.email == uDbCredetial.email && uCredential.password == uDbCredetial.password) {
-      res.render('dashboard', {uDbCredetial})
-     } else {
-      res.send('login failed')
-     }
-     
-
-      
-      
-
-      // if (uCredential.email == uDbCredetial.email) {
-      //   console.log(" mail verified");
-      //   if (uCredential.password == uDbCredetial.password) {
-      //     console.log(" password verified");
-      //   }
-      //   res.send("login successful");
-      // } else {
-      //   res.send("login failed");
-      // }
+        if (isMatch) {
+          res.render("dashboard", { uDbCredetial });
+        } else {
+          res.send("Wrong Password");
+        }
+      } else {
+        res.send("you are not regeistered user..... login now");
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  // static dashboard = (req, res) => {
-  //   res.render("dashboard");
-  // };
+//getting login page
+// static logOut = (req, res) => {
+//   res.render("index");
+// };
 }
 
 export default LoginControllers;
